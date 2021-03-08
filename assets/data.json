@@ -1,0 +1,104 @@
+
+ {
+   "items":[
+    {
+        "name":"Greasy Plant",
+        "time": "every 12 days",
+        "tip": "Water abundantly never water if the soil is still wet. Always wait for it to be fully dry",
+        "image": "assets/img/greasy.jpg"
+    },
+
+    {
+        "name":"Rubber fig (ficus elastica)",
+        "time": "every 5 to 10 days.",
+        "tip": "Rubber fig appreciates well-drained soils. Therefore, water when the soil is completely dry to a depth of 5 cm",
+        "image": "assets/img/rubber.jpg"
+    },
+
+    {
+        "name":"Peace lily (Spathiphyllum)",
+        "time": "every 7 days",
+        "tip": "let the soil dry to a depth of about 5cm between waterings. If the soil takes longer to dry, it needs more sun exposure",
+        "image": "assets/img/lily.jpg"
+    },
+
+    {
+        "name":"Aloe",
+        "time": "every 12 days",
+        "tip": "Aloe is a greasy plant so never water if the soil is still wet. Always wait for it to be fully dry",
+        "image": "assets/img/aloe.jpg"
+    },
+
+    {
+        "name":"Snake plant (Sansevieria trifasciata)",
+        "time": "every 10 to 15 days",
+        "tip": "As with greasy plants, wait for the soil to dry completely between each watering. During watering, flood the plant and allow the soil to drain and dry as quickly as possible. Although it tolerates shade well, sansevieria is a desert plant that needs bright light and direct exposure to the sun. ",
+        "image": "assets/img/snake.jpg"
+    },
+
+    {
+        "name":"Fiddle-leaf fig (ficus lyrata)",
+        "time": "every 5 to 10 days",
+        "tip": "Allow the soil to dry to a depth of about 5 cm between waterings. The fiddle-leaf fig likes to be in full light, even if its foliage tends to dry out",
+        "image": "assets/img/fiddle.jpg"
+    },
+
+    {
+        "name":"Peperomia",
+        "time": "every 5 to 10 days",
+        "tip": "let the soil dry to a depth of about 5 cm between each watering. If the soil takes a long time to dry, it means that your Peperomia is not getting enough sun.",
+        "image": "assets/img/pepe.jpg"
+    },
+
+    {
+        "name":"Spider plant (Chlorophytum comosum)",
+        "time": "every 5 to 10 days",
+        "tip": "Water when the soil is dry at a depth of about 5 cm. The spider plant appreciates moist soil. But if the soil takes a long time to dry, your plant is not getting enough light.",
+        "image": "assets/img/spider.jpg"
+    },
+
+    {
+        "name":"Calathea",
+        "time": "every 5 to 10 days",
+        "tip": "Water when the soil is dry at a depth of about 5 cm. NEVER spray the foliage of your calathea, as it is a disease-prone plant. However, the calathea likes moist soil. And again, if the soil takes a long time to dry, it means that your plant is not getting enough light.",
+        "image": "assets/img/calathea.jpg"
+    },
+
+    {
+        "name":"Parlour palm (Chamaedorea elegans)",
+        "time": "every 5 to 10 days.",
+        "tip": "Water the parlour palm as soon as the soil is dry at a depth of about 5 cm. It appreciates damp soil, but it will take a long time to dry if your palm does not receive enough light.",
+        "image": "assets/img/palm.jpg"
+    },
+
+    {
+        "name":"Lemon tree (and other citrus)",
+        "time": "every 5 to 10 days",
+        "tip": "If the soil takes a long time to dry, your plant may not receive enough light or perhaps its pot is not suitable. Citrus roots like to dry as quickly as possible. So, to ensure that your citrus fruits live longer, use clay pots.",
+        "image": "assets/img/lemon.jpg"
+    },
+
+    {
+        "name":"Moth orchids (Phalaenopsis)",
+        "time": "every 5 to 10 days",
+        "tip": "Spray your orchid with water regularly (every day or every couple). Once a week, dip the pot three-quarters of the way into a bucket of water at room temperature. Leave your plant to soak for about 10 minutes, until no more air bubbles escape from the pot. Be careful, orchids are not very tolerant of the sphagnum moss often found in potting soil, as this causes them to rot. Therefore, use a suitable potting compost mixture based on orchid bark instead. Finally, phalaenopsis like rooms with good humidity, such as a bathroom with a window. If you place it in your bathroom in this way, you can spray it less often.",
+        "image": "assets/img/orchids.jpg"
+    },
+
+    {
+        "name":"Philodendron",
+        "time": "every 5 to 10 days",
+        "tip": "Water your philodendron when the soil is dry at a depth of about 5 cm. If the soil takes longer to dry, your plant is not getting enough light.",
+        "image": "assets/img/philo.jpg"
+    },
+
+    {
+        "name":"Ficus",
+        "time": "every 5 to 10 days",
+        "tip": "Water as soon as the soil is completely dry, at a depth of about 5 cm. Ficus plants like good exposure to the sun",
+        "image": "assets/img/ficus.jpg"
+    }
+    ]
+}
+
+    
