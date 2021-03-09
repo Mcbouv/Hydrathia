@@ -23,7 +23,10 @@ class _AppState extends State<App> {
         future: _futureBae,
         builder: (ctx, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              backgroundColor: LIGHT_GREEN,
+            ));
           }
           // PROFILE SHIMMER
           return Home(
@@ -51,7 +54,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         backgroundColor: APP_WHITE,
         appBar: AppBar(
           backgroundColor: DARK_GREEN,
-          // centerTitle: true,
           title: Text(
             "Hydrathia",
             style: TextStyle(fontWeight: FontWeight.w600),
@@ -59,10 +61,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           bottom: TabBar(
             tabs: [
               Tab(
-                text: "All",
+                text: "Favorites",
               ),
               Tab(
-                text: "Favorites",
+                text: "All",
               )
             ],
           ),
@@ -78,9 +80,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ),
                 itemCount: widget.plants.length ?? 0,
                 itemBuilder: (context, i) {
-                  return PlantPill(
-                      image: widget.plants[i].image,
-                      name: widget.plants[i].name);
+                  return PlantPill(plant: widget.plants[i]);
                 },
               ),
             ),
@@ -89,8 +89,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               width: width,
               height: height - 56,
               child: ListView(
-                children: <Widget>[PlantPill(image: null, name: null)],
-              ),
+                  // children: <Widget>[PlantPill(image: null, name: null)],
+                  ),
             ),
           ],
         ),
@@ -100,16 +100,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 }
 
 class PlantPill extends StatelessWidget {
-  final String image;
-  final String name;
-  PlantPill({@required this.image, @required this.name});
+  // final String image;
+  // final String name;
+  final Plant plant;
+  PlantPill({@required this.plant});
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
-        //
+         Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SinglePlant(plant: plant)));
       },
       child: Container(
         width: width - 32,
@@ -133,7 +135,7 @@ class PlantPill extends StatelessWidget {
                 child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                image,
+                plant.image,
                 fit: BoxFit.cover,
               ),
             )),
@@ -148,7 +150,7 @@ class PlantPill extends StatelessWidget {
               bottom: 12,
               left: 12,
               child: Text(
-                name,
+                plant.name,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: REAL_BLACK,

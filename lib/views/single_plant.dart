@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:plant_store/views/colors.dart';
 
 class SinglePlant extends StatefulWidget {
+  // final String image;
+  // final String name;
+  // final String time;
+  // final String tip;
+  final Plant plant;
+  SinglePlant({@required this.plant});
   @override
   _SinglePlantState createState() => _SinglePlantState();
 }
@@ -22,7 +28,7 @@ class _SinglePlantState extends State<SinglePlant> {
               width: width,
               decoration: BoxDecoration(color: DARK_GREEN),
               child: Image.asset(
-                "assets/img/lily.jpg",
+                widget.plant.image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -47,7 +53,7 @@ class _SinglePlantState extends State<SinglePlant> {
                     children: <Widget>[
                       Container(
                         child: Text(
-                          "Aloe Vera",
+                          widget.plant.name,
                           style: TextStyle(
                               color: LIGHT_GREEN,
                               fontWeight: FontWeight.w600,
@@ -57,7 +63,7 @@ class _SinglePlantState extends State<SinglePlant> {
                       Container(
                         padding: EdgeInsets.only(top: 4),
                         child: Text(
-                          "water every 5 to 10 days",
+                          "water ${widget.plant.time}",
                           style: TextStyle(
                               color: LIGHT_GREEN,
                               fontWeight: FontWeight.w500,
@@ -67,7 +73,7 @@ class _SinglePlantState extends State<SinglePlant> {
                       Container(
                         padding: EdgeInsets.only(top: 16),
                         child: Text(
-                          "Aloe is a greasy plant so never water if the soil is still wet. Always wait for it to be fully dry",
+                          widget.plant.tip,
                           style: TextStyle(
                               color: LIGHT_GREEN,
                               fontWeight: FontWeight.w500,
@@ -76,7 +82,7 @@ class _SinglePlantState extends State<SinglePlant> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          //
+                          // setState
                         },
                         child: Container(
                           width: width / 3,
@@ -86,9 +92,7 @@ class _SinglePlantState extends State<SinglePlant> {
                             horizontal: width / 16,
                           ),
                           decoration: BoxDecoration(
-                            color:
-                                // Colors.transparent,
-                                APP_BLACK,
+                            color: APP_BLACK,
                             border: Border.all(color: LIGHT_GREEN, width: 2),
                             boxShadow: [
                               BoxShadow(
