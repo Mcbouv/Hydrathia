@@ -1,4 +1,4 @@
-package com.example.plant_store
+package com.hydrathia.plant_store
 
 import io.flutter.embedding.android.FlutterActivity
 

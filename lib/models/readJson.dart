@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:plant_store/main.dart';
 
 import 'Plant.dart';
 
@@ -23,6 +24,8 @@ Future<List<Plant>> readJson() async {
     results.add(Plant.fromJson(item));
   }
 
-  print(results.toString());
+  await saveToDB(results.last);
+
+  // print(results.toString());
   return results;
 }

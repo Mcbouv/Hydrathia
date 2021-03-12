@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:plant_store/main.dart';
+import 'package:plant_store/models/Plant.dart';
+import 'package:plant_store/toast.dart';
 import 'package:plant_store/views/colors.dart';
+
+import 'home.dart';
 
 class SinglePlant extends StatefulWidget {
   // final String image;
@@ -7,12 +13,23 @@ class SinglePlant extends StatefulWidget {
   // final String time;
   // final String tip;
   final Plant plant;
-  SinglePlant({@required this.plant});
+  final bool isNotified;
+  final String id;
+  SinglePlant({this.plant, this.isNotified = false, this.id});
   @override
   _SinglePlantState createState() => _SinglePlantState();
 }
 
 class _SinglePlantState extends State<SinglePlant> {
+  checkPayload() {
+    if (widget.isNotified) {}
+  }
+
+  @override
+  initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -44,7 +61,7 @@ class _SinglePlantState extends State<SinglePlant> {
                     bottom: 16,
                   ),
                   decoration: BoxDecoration(
-                      color: APP_BLACK,
+                      color: widget.isNotified ? APP_WHITE : APP_BLACK,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(36),
                           topRight: Radius.circular(36))),
@@ -63,7 +80,9 @@ class _SinglePlantState extends State<SinglePlant> {
                       Container(
                         padding: EdgeInsets.only(top: 4),
                         child: Text(
-                          "water ${widget.plant.time}",
+                          widget.isNotified
+                              ? "WATER TODAY"
+                              : "water ${widget.plant.time}",
                           style: TextStyle(
                               color: LIGHT_GREEN,
                               fontWeight: FontWeight.w500,
@@ -81,8 +100,19 @@ class _SinglePlantState extends State<SinglePlant> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          // setState
+                        onTap: () async {
+                          if (widget.plant.isLiked) {
+                            await removeFromDB(widget.plant);
+                            showErrorToast(
+                                "Plant removed from Favorites", context);
+                          } else {
+                            await saveToDB(widget.plant);
+                            showSuccessToast(
+                                "Plant added to Favorites", context);
+                          }
+                          setState(() {
+                            widget.plant.isLiked = !widget.plant.isLiked;
+                          });
                         },
                         child: Container(
                           width: width / 3,
@@ -92,7 +122,8 @@ class _SinglePlantState extends State<SinglePlant> {
                             horizontal: width / 16,
                           ),
                           decoration: BoxDecoration(
-                            color: APP_BLACK,
+                            color:
+                                widget.plant.isLiked ? LIGHT_GREEN : APP_BLACK,
                             border: Border.all(color: LIGHT_GREEN, width: 2),
                             boxShadow: [
                               BoxShadow(
@@ -104,9 +135,13 @@ class _SinglePlantState extends State<SinglePlant> {
                           ),
                           child: Center(
                             child: Text(
-                              "Add to Favorites",
+                              widget.plant.isLiked
+                                  ? "Favorite"
+                                  : "Add to Favorites",
                               style: TextStyle(
-                                  color: LIGHT_GREEN,
+                                  color: widget.plant.isLiked
+                                      ? APP_BLACK
+                                      : LIGHT_GREEN,
                                   fontSize: 17,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -119,15 +154,25 @@ class _SinglePlantState extends State<SinglePlant> {
             Positioned(
                 top: 32,
                 left: 8,
-                child: Container(
-                  // color: APP_BLACK,
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                      color: APP_BLACK,
-                      borderRadius: BorderRadius.circular(24)),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: LIGHT_GREEN,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => App()));
+                  },
+                  child: Container(
+                    // color: APP_BLACK,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      top: 2,
+                      bottom: 2,
+                    ),
+                    decoration: BoxDecoration(
+                        color: APP_WHITE,
+                        borderRadius: BorderRadius.circular(24)),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: DARK_GREEN,
+                    ),
                   ),
                 ))
           ],

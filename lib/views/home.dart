@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:plant_store/models/Plant.dart';
 import 'package:plant_store/models/readJson.dart';
 import 'package:plant_store/views/colors.dart';
+import 'package:plant_store/main.dart';
+
+import 'single_plant.dart';
 
 class App extends StatefulWidget {
   @override
@@ -19,20 +22,22 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext ctx) {
-    return FutureBuilder(
-        future: _futureBae,
-        builder: (ctx, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-                child: CircularProgressIndicator(
-              backgroundColor: LIGHT_GREEN,
-            ));
-          }
-          // PROFILE SHIMMER
-          return Home(
-            plants: snapshot.data,
-          );
-        });
+    return Scaffold(
+      body: FutureBuilder(
+          future: _futureBae,
+          builder: (ctx, snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                  child: CircularProgressIndicator(
+                backgroundColor: LIGHT_GREEN,
+              ));
+            }
+            // PROFILE SHIMMER
+            return Home(
+              plants: snapshot.data,
+            );
+          }),
+    );
   }
 }
 
@@ -44,27 +49,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  List<Plant> _cowsBabe;
+  @override
+  void initState() {
+    _cowsBabe = fetchSaved();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    _cowsBabe = fetchSaved();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         backgroundColor: APP_WHITE,
         appBar: AppBar(
           backgroundColor: DARK_GREEN,
+          automaticallyImplyLeading: false,
           title: Text(
             "Hydrathia",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           bottom: TabBar(
+            indicatorColor: REAL_WHITE,
             tabs: [
               Tab(
-                text: "Favorites",
+                text: "All",
               ),
               Tab(
-                text: "All",
+                text: "Favorites",
               )
             ],
           ),
@@ -88,9 +103,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             Container(
               width: width,
               height: height - 56,
-              child: ListView(
-                  // children: <Widget>[PlantPill(image: null, name: null)],
-                  ),
+              child: ListView.builder(
+                padding: EdgeInsets.only(
+                  top: 16,
+                ),
+                itemCount: _cowsBabe.length ?? 0,
+                itemBuilder: (context, i) {
+                  return PlantPill(plant: _cowsBabe[i]);
+                },
+              ),
             ),
           ],
         ),
@@ -110,8 +131,16 @@ class PlantPill extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
-         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SinglePlant(plant: plant)));
+        var qaz = checkDB(plant) ?? 0;
+        if (qaz.runtimeType == Plant) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SinglePlant(plant: qaz)));
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SinglePlant(plant: plant)));
+        }
       },
       child: Container(
         width: width - 32,

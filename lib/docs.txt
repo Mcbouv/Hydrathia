@@ -1,0 +1,50 @@
+This is a simple text file explaining the Hydrathia App
+
+Hydrathia app uses two main technologies:
+Android Alarm Manager
+Flutter Local Push Notifications
+
+The Alarm Manager ensures that notifications are pushed even when the user has not opened the app
+in a long time as long as it is installed.
+It has its limitations on some devices such Samsung has its own policy on background Alarms, Hauwei too.
+More info on the official documentation.
+https://developer.android.com/reference/android/app/AlarmManager
+
+
+Flutter Local Push Notifications just pushes notifications as instructed by the Alarm Manager.
+https://pub.dev/packages/flutter_local_notifications
+version 1.4.4+1
+
+Take a look at these functions:
+
+alarm7Days(Plant plant) async {
+  await AndroidAlarmManager.periodic(
+      const Duration(days: 7),
+      // Ensure we have a unique alarm ID.
+      Random().nextInt(pow(2, 31).toInt()),
+      showNotification(id: plant.id),
+      exact: true,
+      wakeup: true,         //wakes up the CPU in case phone is in StandBy mode
+      rescheduleOnReboot: true);
+}
+
+alarm12Days(Plant plant) async {
+  await AndroidAlarmManager.periodic(
+      const Duration(days: 12),
+      // Ensure we have a unique alarm ID.
+      Random().nextInt(pow(2, 31).toInt()),
+      showNotification(id: plant.id),
+      exact: true,
+      wakeup: true,
+      rescheduleOnReboot: true);
+}
+
+
+To wrap it up, Hydrathia is implemented in MVC architecture that is, 
+Model - Plant model
+View - Home.dart, Single_plant.dart
+Controller - readJson.dart, (also some functions in main.dart)
+
+
+To run just install Flutter & hit 
+flutter run
