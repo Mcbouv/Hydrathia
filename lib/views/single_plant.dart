@@ -156,8 +156,9 @@ class _SinglePlantState extends State<SinglePlant> {
                 left: 8,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => App()));
+                    Navigator.pop(context);
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => App()));
                   },
                   child: Container(
                     // color: APP_BLACK,

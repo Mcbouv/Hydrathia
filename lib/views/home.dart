@@ -3,6 +3,7 @@ import 'package:plant_store/models/Plant.dart';
 import 'package:plant_store/models/readJson.dart';
 import 'package:plant_store/views/colors.dart';
 import 'package:plant_store/main.dart';
+import 'package:plant_store/views/favorites.dart';
 
 import 'single_plant.dart';
 
@@ -49,10 +50,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  List<Plant> _cowsBabe;
+  // List<Plant> _cowsBabe;
   @override
   void initState() {
-    _cowsBabe = fetchSaved();
+    // _cowsBabe = fetchSaved();
     super.initState();
   }
 
@@ -60,7 +61,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    _cowsBabe = fetchSaved();
+    // _cowsBabe = fetchSaved();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -100,19 +101,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ),
             /* 000000000000000000000000000000000 */
-            Container(
-              width: width,
-              height: height - 56,
-              child: ListView.builder(
-                padding: EdgeInsets.only(
-                  top: 16,
-                ),
-                itemCount: _cowsBabe.length ?? 0,
-                itemBuilder: (context, i) {
-                  return PlantPill(plant: _cowsBabe[i]);
-                },
-              ),
-            ),
+            Favorites()
           ],
         ),
       ),
